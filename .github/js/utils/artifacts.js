@@ -24,4 +24,4 @@ async function downloadArtifact(github, context, workspace) {
   fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data))
 }
 
-export { downloadArtifact }
+module.exports = { downloadArtifact }
