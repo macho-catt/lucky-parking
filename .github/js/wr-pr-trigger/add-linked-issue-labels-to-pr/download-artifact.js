@@ -34,8 +34,6 @@
     artifact_id: artifactData.id,
     archive_format: 'zip',
   });
-  const fs = require('fs');
-  fs.writeFileSync(`${github.workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data));
  }
  
  module.exports = main
