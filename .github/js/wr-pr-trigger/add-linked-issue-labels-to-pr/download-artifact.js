@@ -17,6 +17,7 @@
   console.log('context: ', context)
   // Retrieve metadata about the artifacts of the last workflow
   // https://octokit.github.io/rest.js/v18#actions-list-workflow-run-artifacts
+  /*
   const artifacts = await github.actions.listWorkflowRunArtifacts({
     owner: context.repo.owner,
     repo: context.repo.repo,
@@ -37,6 +38,7 @@
 
   const fs = require('fs')
   fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data))
+  */
  }
  
  module.exports = main
