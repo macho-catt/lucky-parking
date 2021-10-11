@@ -17,6 +17,7 @@ jobs:
           script: |
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/download-artifact.js')
             const result = script({ g: github, c: context }, "${{ github.workspace }}")
+
       - run: unzip add-linked-issue-labels-to-pr.zip
 
       - name: Get Labels From Linked Issue

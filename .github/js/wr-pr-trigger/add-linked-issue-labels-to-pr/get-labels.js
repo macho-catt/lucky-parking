@@ -15,7 +15,7 @@ function main({g, c}) {
   github = g 
   context = c
   const issueNum = artifacts.readArtifact()
-  console.log(issueNum)
+  console.log('issue: ', issueNum)
 
  }
   
