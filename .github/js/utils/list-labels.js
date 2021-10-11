@@ -3,7 +3,7 @@
  * @param {string} text - Body of text from PR
  * @returns - Returns the issue number, or false
  */
- function listLabelsOnIssue(github, context, issueNum) {
+ async function listLabelsOnIssue(github, context, issueNum) {
   // GET request to retrieve data from results of request
   // https://octokit.github.io/rest.js/v18#issues-list-labels-on-issue
   try {
