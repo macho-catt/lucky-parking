@@ -15,6 +15,7 @@
    github = g
    context = c
 
+  console.log('context: ', context)
   // Retrieve metadata about the artifacts of the last workflow
   // https://octokit.github.io/rest.js/v18#actions-list-workflow-run-artifacts
   const artifacts = await github.actions.listWorkflowRunArtifacts({
