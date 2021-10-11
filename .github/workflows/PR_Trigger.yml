@@ -17,7 +17,7 @@ jobs:
         id: linked-issue
         with:
           script: |
-            const script = require('./.github/js/pr-trigger/add-linked-issue-labels-to-pr/main.js')
+            const script = require('./.github/js/pr-trigger/add-linked-issue-labels-to-pr/retrieve-issue.js')
             const issueNum = script({ g: github, c: context })
             return issueNum
       
