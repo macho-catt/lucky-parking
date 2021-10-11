@@ -15,7 +15,7 @@ function main({g, c}) {
 
 
   // console.log(github.event.pull_request)
-  const body = context.payload.body
+  const body = context.payload.pull_request.body
   console.log(`body: ${body} | type: ${typeof(body)}`)
   const issueNumber = findLinkedIssue(body)
   console.log(issueNumber)
