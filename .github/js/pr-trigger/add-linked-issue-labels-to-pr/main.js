@@ -3,7 +3,7 @@
  */
 var github
 var context
-const findLinkedIssue = require('./.github/js/utils/find-linked-issue.js')
+const findLinkedIssue = require('../../../utils/find-linked-issue.js')
 
 /**
  * Parses the Pull Request body for a linked issue, and returns it
