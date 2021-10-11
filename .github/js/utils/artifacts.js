@@ -34,10 +34,10 @@ async function downloadArtifact(github, context, workspace, zipName) {
  * 
  * @returns 
  */
-function readArtifact() {
+function readArtifact(fileName) {
   // Retrieve pull request and issue number from downloaded artifact
-  if (fs.existsSync('artifact.txt')){
-    const artifact = fs.readFileSync('artifact.txt')
+  if (fs.existsSync(fileName)){
+    const artifact = fs.readFileSync(fileName)
     console.log('artifact is ', artifact)
     return artifact
   }

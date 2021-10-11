@@ -27,7 +27,7 @@ jobs:
         with:
           script: |
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/get-labels.js')
-            const result = script({ g: github, c: context })
+            const result = script({ g: github, c: context }, "${{ github.workspace }}")
           
   Last-Workflow-Failure:
     runs-on: ubuntu-latest

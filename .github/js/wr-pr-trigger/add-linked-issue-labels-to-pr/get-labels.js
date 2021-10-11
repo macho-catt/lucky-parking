@@ -11,10 +11,11 @@
    * @param {Object} c - context object 
    * @returns - returns the linked issue number
    */
-function main({g, c}) {
+function main({g, c}, workspace) {
   github = g 
   context = c
-  const issueNum = artifacts.readArtifact()
+  const fileName = `${workspace}/artifact.txt`
+  const issueNum = artifacts.readArtifact(fileName)
   console.log('issue: ', issueNum)
 
  }
