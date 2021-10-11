@@ -17,7 +17,7 @@ jobs:
         id: linked-issue
         with:
           script: |
-            const script = require('./.github/js/add-linked-issue-labels-to-pr/main.js')
+            const script = require('./.github/js/pr-trigger/add-linked-issue-labels-to-pr/main.js')
             const issueNum = script({ g: github, c: context })
             return issueNum
       
@@ -40,5 +40,5 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: adding-labels-action-artifact
+          name: add-linked-issue-labels-to-pr
           path: addingLabelsAction/artifact/

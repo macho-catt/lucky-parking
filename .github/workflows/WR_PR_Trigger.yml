@@ -1,0 +1,59 @@
+name: WR PR Trigger
+on:
+  workflow_run:
+    workflows: ["PR Trigger"]
+    types: [completed]
+
+jobs:
+  Last-Workflow-Success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    run: |
+      echo ${{ github.event.workflow_run }}
+    steps:
+      - name: Download artifact
+        uses: actions/github-script@v4
+        with:
+          script: |
+            // Retrieve metadata about the artifacts of the last workflow
+            // https://octokit.github.io/rest.js/v18#actions-list-workflow-run-artifacts
+            const artifacts = await github.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: context.payload.workflow_run.id,
+            });
+            console.log('array: ', artifacts.data.artifacts)
+            const artifactData = artifacts.data.artifacts[0]
+            console.log('artifact data: ', artifactData)
+            
+            // Download artifact with GET API
+            // https://octokit.github.io/rest.js/v18#actions-download-artifact
+            var download = await github.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: artifactData.id,
+               archive_format: 'zip',
+            });
+            const fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/add-linked-issue-labels-to-pr.zip', Buffer.from(download.data));
+      - run: unzip add-linked-issue-labels-to-pr.zip
+
+      - name: Read data from add-linked-issue-labels-to-pr artifact
+        uses: actions/github-script@v4
+        # Variable that stores result of script
+        id: artifact
+        with:
+          script: |
+            // Retrieve pull request and issue number from downloaded artifact
+            const fs = require('fs')
+            if(fs.existsSync('artifact.txt')){
+              const artifact = fs.readFileSync('artifact.txt')
+              console.log('artifact: ', JSON.parse(artifact))
+            }
+          
+  Last-Workflow-Failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Failed Run
+        run: echo "The previous GitHub Action failed. Please check the logs for the previous action."
