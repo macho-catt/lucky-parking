@@ -18,7 +18,7 @@
   console.log('context: ', context)
   // Retrieve metadata about the artifacts of the last workflow
   // https://octokit.github.io/rest.js/v18#actions-list-workflow-run-artifacts
-  const artifacts = await github.actions.listWorkflowRunArtifacts({
+  const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
     owner: context.repo.owner,
     repo: context.repo.repo,
     run_id: context.payload.workflow_run.id,
@@ -29,7 +29,7 @@
 
   // Download artifact with GET API
   // https://octokit.github.io/rest.js/v18#actions-download-artifact
-  const download = await github.actions.downloadArtifact({
+  const download = await github.rest.actions.downloadArtifact({
     owner: context.repo.owner,
     repo: context.repo.repo,
     artifact_id: artifactData.id,
