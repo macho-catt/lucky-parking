@@ -3,7 +3,7 @@
  */
 var github
 var context
-const downloadArtifact = require('../../utils/artifacts.js')
+const artifacts = require('../../utils/artifacts.js')
  
  /**
   * Parses the Pull Request body for a linked issue, and returns it
@@ -14,7 +14,7 @@ const downloadArtifact = require('../../utils/artifacts.js')
 async function main({g, c}, workspace) {
   github = g
   context = c
-  downloadArtifact(github, context, workspace)
+  artifacts.downloadArtifact(github, context, workspace)
 }
  
 module.exports = main
