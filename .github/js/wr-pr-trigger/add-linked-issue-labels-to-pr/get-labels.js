@@ -4,6 +4,7 @@
  var github
  var context
  const artifacts = require('../../utils/artifacts.js')
+ const listLabelsOnIssue = require('../../utils/list-labels.js')
   
   /**
    * Parses the Pull Request body for a linked issue, and returns it
@@ -18,6 +19,8 @@ function main({g, c}, workspace) {
   const issueNum = artifacts.readArtifact(fileName)
   console.log('issue: ', issueNum)
 
+  const labels = listLabelsOnIssue(github, context, issueNum)
+  console.log(labels)
  }
   
  module.exports = main
