@@ -3,6 +3,7 @@
  */
  var github
  var context
+ const fs = require('fs')
  
  /**
   * Parses the Pull Request body for a linked issue, and returns it
@@ -17,7 +18,6 @@
   console.log('context: ', context)
   // Retrieve metadata about the artifacts of the last workflow
   // https://octokit.github.io/rest.js/v18#actions-list-workflow-run-artifacts
-  /*
   const artifacts = await github.actions.listWorkflowRunArtifacts({
     owner: context.repo.owner,
     repo: context.repo.repo,
@@ -36,9 +36,7 @@
     archive_format: 'zip',
   });
 
-  const fs = require('fs')
   fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data))
-  */
  }
  
  module.exports = main
