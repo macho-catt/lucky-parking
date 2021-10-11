@@ -6,6 +6,7 @@
  async function listLabelsOnIssue(github, context, issueNum) {
   // GET request to retrieve data from results of request
   // https://octokit.github.io/rest.js/v18#issues-list-labels-on-issue
+  console.log(github.rest)
   try {
     const results = await github.rest.issues.listLabelsOnIssue({
       owner: context.repo.owner,
