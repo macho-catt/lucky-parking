@@ -10,27 +10,23 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
-      - name: Download artifact
+      - name: Download Artifact
         uses: actions/github-script@v5
+        id: download-artifact
         with:
           script: |
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/download-artifact.js')
-            const artifact = script({ g: github, c: context }, "${{ github.workspace }}")
-
+            const result = script({ g: github, c: context }, "${{ github.workspace }}")
       - run: unzip add-linked-issue-labels-to-pr.zip
 
-      - name: Read data from add-linked-issue-labels-to-pr artifact
+      - name: Get Labels From Linked Issue
         uses: actions/github-script@v4
         # Variable that stores result of script
-        id: artifact
+        id: get-labels
         with:
           script: |
-            // Retrieve pull request and issue number from downloaded artifact
-            const fs = require('fs')
-            if(fs.existsSync('artifact.txt')){
-              const artifact = fs.readFileSync('artifact.txt')
-              console.log('artifact: ', JSON.parse(artifact))
-            }
+            const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/get-labels.js')
+            const result = script({ g: github, c: context })
           
   Last-Workflow-Failure:
     runs-on: ubuntu-latest

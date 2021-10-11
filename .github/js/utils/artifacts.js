@@ -1,13 +1,19 @@
 const fs = require('fs')
 
-async function downloadArtifact(github, context, workspace) {
+/**
+ * 
+ * @param {*} github 
+ * @param {*} context 
+ * @param {*} workspace 
+ */
+async function downloadArtifact(github, context, workspace, zipName) {
   // Retrieve metadata about the artifacts of the last workflow
   // https://octokit.github.io/rest.js/v18#actions-list-workflow-run-artifacts
   const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
     owner: context.repo.owner,
     repo: context.repo.repo,
     run_id: context.payload.workflow_run.id,
-  });
+  })
   console.log('array: ', artifacts.data.artifacts)
   const artifactData = artifacts.data.artifacts[0]
   console.log('artifact data: ', artifactData)
@@ -19,9 +25,26 @@ async function downloadArtifact(github, context, workspace) {
     repo: context.repo.repo,
     artifact_id: artifactData.id,
     archive_format: 'zip',
-  });
+  })
 
-  fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data))
+  fs.writeFileSync(`${workspace}/${zipName}`, Buffer.from(download.data))
 }
 
-module.exports = { downloadArtifact }
+/**
+ * 
+ * @returns 
+ */
+function readArtifact() {
+  // Retrieve pull request and issue number from downloaded artifact
+  if (fs.existsSync('artifact.txt')){
+    const artifact = fs.readFileSync('artifact.txt')
+    return artifact
+  }
+
+  return false
+}
+
+module.exports = { 
+  downloadArtifact, 
+  readArtifact 
+}

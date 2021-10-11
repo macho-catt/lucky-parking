@@ -11,10 +11,11 @@ const artifacts = require('../../utils/artifacts.js')
   * @param {Object} c - context object 
   * @returns - returns the linked issue number
   */
-async function main({g, c}, workspace) {
+function main({g, c}, workspace) {
   github = g
   context = c
-  artifacts.downloadArtifact(github, context, workspace)
+  const zipName = 'add-linked-issue-labels-to-pr.zip'
+  artifacts.downloadArtifact(github, context, workspace, zipName)
 }
  
 module.exports = main
