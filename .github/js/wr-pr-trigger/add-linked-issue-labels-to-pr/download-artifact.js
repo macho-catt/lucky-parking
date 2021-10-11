@@ -11,7 +11,7 @@
   * @param {Object} c - context object 
   * @returns - returns the linked issue number
   */
- async function main({g, c}) {
+ async function main({g, c}, workspace) {
    github = g
    context = c
 
@@ -36,7 +36,8 @@
     archive_format: 'zip',
   });
 
-  return download
+  const fs = require('fs')
+  fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(artifact.data))
  }
  
  module.exports = main
