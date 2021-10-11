@@ -3,7 +3,6 @@
  */
  var github
  var context
- const findLinkedIssue = require('../../utils/find-linked-issue.js')
  
  /**
   * Parses the Pull Request body for a linked issue, and returns it
@@ -37,7 +36,7 @@
   });
 
   const fs = require('fs')
-  fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(artifact.data))
+  fs.writeFileSync(`${workspace}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data))
  }
  
  module.exports = main
