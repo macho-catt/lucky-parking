@@ -28,12 +28,14 @@
 
   // Download artifact with GET API
   // https://octokit.github.io/rest.js/v18#actions-download-artifact
-  var download = await github.actions.downloadArtifact({
+  const download = await github.actions.downloadArtifact({
     owner: context.repo.owner,
     repo: context.repo.repo,
     artifact_id: artifactData.id,
     archive_format: 'zip',
   });
+
+  return download
  }
  
  module.exports = main

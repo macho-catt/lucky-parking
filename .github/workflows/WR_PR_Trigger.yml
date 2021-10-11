@@ -17,7 +17,7 @@ jobs:
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/download-artifact.js')
             const artifact = script({ g: github, c: context })
             const fs = require('fs')
-            fs.writeFileSync(`${{github.workspace}}/add-linked-issue-labels-to-pr.zip`, Buffer.from(download.data))
+            fs.writeFileSync(`${{github.workspace}}/add-linked-issue-labels-to-pr.zip`, Buffer.from(artifact.data))
       - run: unzip add-linked-issue-labels-to-pr.zip
 
       - name: Read data from add-linked-issue-labels-to-pr artifact
