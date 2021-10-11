@@ -38,6 +38,7 @@ function readArtifact() {
   // Retrieve pull request and issue number from downloaded artifact
   if (fs.existsSync('artifact.txt')){
     const artifact = fs.readFileSync('artifact.txt')
+    console.log('artifact is ', artifact)
     return artifact
   }
 
