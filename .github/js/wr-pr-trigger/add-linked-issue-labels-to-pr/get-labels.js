@@ -18,7 +18,7 @@ function main({g, c}, workspace) {
   const fileName = `${workspace}/artifact.txt`
   const issueNum = artifacts.readArtifact(fileName)
   console.log('issue: ', issueNum)
-
+  console.log(typeof issueNum)
   const labels = listLabelsOnIssue(github, context, issueNum)
   console.log(labels)
  }
