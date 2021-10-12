@@ -21,6 +21,7 @@ async function main({g, c}, workspace) {
 
   // End action of previous action did not yield a proper issue number
   if (artifactJSON.status === 'Failed') {
+    console.log ('Please check the previous action, Retrieve Linked Issue From PR, to see why it failed.')
     return {
       status: 'Failed',
       prNumber: null,
