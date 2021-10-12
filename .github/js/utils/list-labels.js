@@ -12,7 +12,6 @@
       repo: context.repo.repo,
       issue_number: issueNum,
     })
-    console.log(results)
     return response.data
   }
   catch(err) {

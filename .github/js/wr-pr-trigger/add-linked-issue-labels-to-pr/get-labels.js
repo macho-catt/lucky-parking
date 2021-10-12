@@ -22,6 +22,7 @@ function main({g, c}, workspace) {
   console.log('issue: ', issueNum)
   console.log('pr: ', prNum)
   const response = listLabelsOnIssue(github, context, issueNum)
+  console.log('response: ', response)
   const labels = response.map(data => data.name)
   console.log(`Labels found on issue: ${labels.join(', ')}`)
  }
