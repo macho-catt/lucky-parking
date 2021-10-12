@@ -18,10 +18,10 @@ async function downloadArtifact(github, context, workspace, zipName) {
     repo: context.repo.repo,
     run_id: context.payload.workflow_run.id,
   })
-  const artifacts = artifacts.data.artifacts
-  console.log('array: ', artifacts)
+  const artifactsArray = artifacts.data.artifacts
+  console.log('array: ', artifactsArray)
   // const artifactData = artifacts.data.artifacts[0]
-  const artifactData = [...artifacts.map(data => data.name === zipName)]
+  const artifactData = [...artifactsArray.map(data => data.name === zipName)]
   console.log('artifact data: ', artifactData)
 
   // Download artifact with GET API
