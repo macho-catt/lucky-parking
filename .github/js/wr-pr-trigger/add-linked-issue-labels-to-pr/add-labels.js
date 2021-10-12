@@ -22,7 +22,7 @@ async function main({g, c}, { status, prNumber, labels }) {
     return false
   }
 
-  const response = labelsAPI.setLabels(github, context, prNumber, labels)
+  const response = await labelsAPI.setLabels(github, context, prNumber, labels)
 
   console.log(response)
   if (response.status === 200){
