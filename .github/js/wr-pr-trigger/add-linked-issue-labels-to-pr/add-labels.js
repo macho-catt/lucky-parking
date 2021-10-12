@@ -18,7 +18,7 @@ async function main({g, c}, { status, prNumber, labels }) {
   context = c
 
   // End action if previous action's result is false
-  if (status === false) {
+  if (status === 'Failed') {
     return false
   }
 

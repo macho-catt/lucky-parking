@@ -20,7 +20,7 @@ async function main({g, c}, workspace) {
   const artifactJSON = JSON.parse(artifacts.readArtifact(fileName))
 
   // End action of previous action did not yield a proper issue number
-  if (artifactJSON.status === false) {
+  if (artifactJSON.status === 'Failed') {
     return {
       status: 'Failed',
       prNumber: null,
