@@ -6,12 +6,13 @@
  const artifacts = require('../../utils/artifacts.js')
  const labelsAPI = require('../../utils/labels.js')
   
-  /**
-   * Parses the Pull Request body for a linked issue, and returns it
-   * @param {Object} g - github object  
-   * @param {Object} c - context object 
-   * @returns - returns the linked issue number
-   */
+/**
+ * Parses the Pull Request body for a linked issue, and returns it
+ * @param {Object} g - github object  
+ * @param {Object} c - context object 
+ * @param {String} workspace - the current GitHub workspace directory path
+ * @returns - an object that contains the PR number and an array of labels
+ */
 async function main({g, c}, workspace) {
   github = g 
   context = c

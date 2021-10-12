@@ -6,10 +6,10 @@ var context
 const artifacts = require('../../utils/artifacts.js')
  
  /**
-  * Parses the Pull Request body for a linked issue, and returns it
+  * Downloads the artifact from the previous workflow
   * @param {Object} g - github object  
   * @param {Object} c - context object 
-  * @returns - returns the linked issue number
+  * @param {String} workspace - the current GitHub workspace directory path
   */
 function main({g, c}, workspace) {
   github = g

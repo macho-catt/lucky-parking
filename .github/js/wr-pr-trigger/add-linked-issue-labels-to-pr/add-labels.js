@@ -5,24 +5,22 @@
  var context
  const labelsAPI = require('../../utils/labels.js')
   
-  /**
-   * Parses the Pull Request body for a linked issue, and returns it
-   * @param {Object} g - github object  
-   * @param {Object} c - context object 
-   * @returns - returns the linked issue number
-   */
+/**
+ * Adds labels to the corresponding PR
+ * @param {Object} g - github object  
+ * @param {Object} c - context object 
+ * @param {String} prNumber - pull request number
+ * @param {Array} labels - array of labels
+ * @returns - returns a boolean based on the result
+ */
 async function main({g, c}, { prNumber, labels }) {
   github = g 
   context = c
 
-  console.log('pr: ', prNumber)
-  console.log('labels', labels)
-
+  // End action if issue does not have any labels
   if (labels.length < 1) {
     return false
   }
-
-  console.log('length of arr: ', labels.length)
 
   const response = labelsAPI.setLabels(github, context, prNumber, labels)
 

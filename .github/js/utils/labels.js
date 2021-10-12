@@ -1,7 +1,13 @@
+/** 
+ * This file contains helper functions related to GitHub labels
+*/
+
 /**
- * Parses a text and returns any found linked issue
- * @param {string} text - Body of text from PR
- * @returns - Returns the issue number, or false
+ * Lists the labels attached to a GitHub issue
+ * @param {Object} github - github object  
+ * @param {Object} context - context object 
+ * @param {string} issueNum - issue number
+ * @returns - Returns an object of array data corresponding to the issue's labels
  */
  async function listLabelsOnIssue(github, context, issueNum) {
   // GET request to retrieve data from results of request
@@ -21,9 +27,16 @@
   }
 }
 
-// PUT request to apply labels to pull request
-// https://octokit.github.io/rest.js/v18#issues-add-labels
+/**
+ * Lists the labels attached to a GitHub issue
+ * @param {Object} github - github object  
+ * @param {Object} context - context object 
+ * @param {string} prNumber - PR number
+ * @returns - Returns an API response object
+ */
 async function setLabels(github, context, prNumber, labels) {
+  // PUT request to apply labels to pull request
+  // https://octokit.github.io/rest.js/v18#issues-add-labels
   try {
     const response = await github.rest.issues.setLabels({
       owner: context.repo.owner,

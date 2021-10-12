@@ -11,7 +11,6 @@ jobs:
     if: ${{ github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'edited') }}
     steps:
       - uses: actions/checkout@v2
-      # Gets the linked issue from the PR body
       - name: Retrieve Linked Issue From PR
         uses: actions/github-script@v4
         id: linked-issue
@@ -21,14 +20,12 @@ jobs:
             const issueNum = script({ g: github, c: context })
             return issueNum
       
-      # Returns loudly if previous step failed
       - name: Return Failure
         if: ${{ steps.linked-issue.result == 'false' }}
         run: |
           echo "Please expand above outputs for errors."
           exit 1
       
-      # Create an artifact with the results
       - name: Create Artifacts
         # Escapes user input for injection attacks
         env:

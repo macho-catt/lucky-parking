@@ -37,6 +37,17 @@ jobs:
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/add-labels.js')
             const getLabelsResult = ${{ steps.get-labels.outputs.result }}
             const result = script({ g: github, c: context }, getLabelsResult)
+            return result
+
+      - name: Return Failure
+        if: steps.add-labels.outputs.result == 'false'
+        run: |
+          echo "Please expand above output for errors."
+          exit 1
+      -name: Return Success
+        run: |
+          echo "${{ steps.final-result.outputs.result }}"
+          echo "Success"
           
   Last-Workflow-Failure:
     runs-on: ubuntu-latest

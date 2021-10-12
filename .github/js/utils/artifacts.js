@@ -1,10 +1,14 @@
-const fs = require('fs')
+/** 
+ * This file contains helper functions related to GitHub artifacts
+*/
 
+const fs = require('fs')
 /**
- * 
- * @param {*} github 
- * @param {*} context 
- * @param {*} workspace 
+ * Downloads a specific artifact from GitHub
+ * @param {Object} g - github object  
+ * @param {Object} c - context object 
+ * @param {String} workspace - the current GitHub workspace directory path
+ * @param {String} zipName - name of the zip file to download
  */
 async function downloadArtifact(github, context, workspace, zipName) {
   // Retrieve metadata about the artifacts of the last workflow
@@ -31,8 +35,8 @@ async function downloadArtifact(github, context, workspace, zipName) {
 }
 
 /**
- * 
- * @returns 
+ * @param {String} fileName - name of the file to read
+ * @returns the body of the file if it exists
  */
 function readArtifact(fileName) {
   // Retrieve pull request and issue number from downloaded artifact
