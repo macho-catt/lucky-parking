@@ -16,11 +16,14 @@ function main({g, c}, workspace) {
   github = g 
   context = c
   const fileName = `${workspace}/artifact.txt`
-  const issueNum = artifacts.readArtifact(fileName)
+  const artifactJSON = JSON.parse(artifacts.readArtifact(fileName))
+  const issueNum = artifactJSON.issueNumber
+  const prNum = artifactJSON.prNumber
   console.log('issue: ', issueNum)
-  console.log(typeof issueNum)
-  const labels = listLabelsOnIssue(github, context, issueNum)
-  console.log(labels)
+  console.log('pr: ', prNum)
+  const response = listLabelsOnIssue(github, context, issueNum)
+  const labels = response.map(data => data.name)
+  console.log(`Labels found on issue: ${labels.join(', ')}`)
  }
   
  module.exports = main

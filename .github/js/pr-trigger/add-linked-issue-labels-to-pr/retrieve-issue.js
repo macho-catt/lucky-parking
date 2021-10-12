@@ -15,8 +15,12 @@ function main({g, c}) {
   github = g
   context = c
   const body = context.payload.pull_request.body
-  const issueNumber = findLinkedIssue(body)
-  return issueNumber
+  const issueNum = findLinkedIssue(body)
+  const returnObj = {
+    prNumber: context.payload.pull_request.number,
+    issueNumber: issueNum
+  }
+  return JSON.stringify(returnObj)
 }
 
 module.exports = main
