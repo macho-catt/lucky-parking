@@ -22,12 +22,21 @@ jobs:
 
       - name: Get Labels From Linked Issue
         uses: actions/github-script@v5
-        # Variable that stores result of script
         id: get-labels
         with:
           script: |
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/get-labels.js')
             const result = script({ g: github, c: context }, "${{ github.workspace }}")
+            return result
+        
+      - name: Add Labels To Pull Request
+        uses: actions/github-script@v5
+        id: add-labels
+        with:
+            script: |
+            const get-labels-result = ${{ steps.get-labels.outputs.result }}
+            const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/get-labels.js')
+            const result = script({ g: github, c: context }, get-labels-result)
           
   Last-Workflow-Failure:
     runs-on: ubuntu-latest

@@ -21,4 +21,26 @@
   }
 }
 
-module.exports = listLabelsOnIssue
+// PUT request to apply labels to pull request
+// https://octokit.github.io/rest.js/v18#issues-add-labels
+async function setLabels(github, context, prNumber, labels) {
+  try {
+    const response = await github.issues.setLabels({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      issue_number: prNumber,
+      labels: labels,
+    })
+    return response
+  }
+  catch(err) {
+    console.log('Error with PUT Request to edit labels')
+    console.log(err)
+    return false
+  }
+}
+
+module.exports = { 
+  listLabelsOnIssue,
+  setLabels
+}
