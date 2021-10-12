@@ -20,8 +20,8 @@ async function downloadArtifact(github, context, workspace, zipName) {
   })
   const artifactsArray = artifacts.data.artifacts
   console.log('array: ', artifactsArray)
-  // const artifactData = artifacts.data.artifacts[0]
-  const artifactData = [...artifactsArray.filter(data => data.name === zipName)]
+  // Each zipfile name should be unique
+  const artifactData = artifactsArray.filter(data => data.name === zipName)[0]
   console.log('artifact data: ', artifactData)
 
   // Download artifact with GET API
