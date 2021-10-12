@@ -21,7 +21,7 @@ async function downloadArtifact(github, context, workspace, zipName) {
   const artifactsArray = artifacts.data.artifacts
   console.log('array: ', artifactsArray)
   // const artifactData = artifacts.data.artifacts[0]
-  const artifactData = [...artifactsArray.map(data => data.name === zipName)]
+  const artifactData = [...artifactsArray.filter(data => data.name === zipName)]
   console.log('artifact data: ', artifactData)
 
   // Download artifact with GET API
