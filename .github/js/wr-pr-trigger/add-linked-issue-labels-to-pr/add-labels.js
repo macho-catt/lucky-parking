@@ -13,12 +13,12 @@
  * @param {Array} labels - array of labels
  * @returns - returns a boolean based on the result
  */
-async function main({g, c}, { prNumber, labels }) {
+async function main({g, c}, { status, prNumber, labels }) {
   github = g 
   context = c
 
-  // End action if issue does not have any labels
-  if (labels.length < 1) {
+  // End action if previous action's result is false
+  if (status === false) {
     return false
   }
 

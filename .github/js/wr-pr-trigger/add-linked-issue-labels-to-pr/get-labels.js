@@ -19,6 +19,15 @@ async function main({g, c}, workspace) {
   const fileName = `${workspace}/artifact.txt`
   const artifactJSON = JSON.parse(artifacts.readArtifact(fileName))
 
+  // End action of previous action did not yield a proper issue number
+  if (artifactJSON.status === false) {
+    return {
+      status: 'Failed',
+      prNumber: null,
+      labels: null
+    }
+  }
+
   const issueNum = artifactJSON.issueNumber
   const prNum = artifactJSON.prNumber
   const response = await labelsAPI.listLabelsOnIssue(github, context, issueNum)
@@ -26,6 +35,7 @@ async function main({g, c}, workspace) {
   const labels = response.map(data => data.name)
   console.log(`Labels found on issue: ${labels.join(', ')}`)
   return {
+    status: 'Success',
     prNumber: prNum,
     labels: labels
   }

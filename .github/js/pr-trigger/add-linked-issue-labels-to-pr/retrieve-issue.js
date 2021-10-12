@@ -16,7 +16,9 @@ function main({g, c}) {
   context = c
   const body = context.payload.pull_request.body
   const issueNum = findLinkedIssue(body)
+  const status = issueNum === false ? 'Failed' : 'Success'
   const returnObj = {
+    status: status,
     prNumber: context.payload.pull_request.number,
     issueNumber: issueNum
   }
