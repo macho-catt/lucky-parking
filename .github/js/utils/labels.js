@@ -25,7 +25,7 @@
 // https://octokit.github.io/rest.js/v18#issues-add-labels
 async function setLabels(github, context, prNumber, labels) {
   try {
-    const response = await github.issues.setLabels({
+    const response = await github.rest.issues.setLabels({
       owner: context.repo.owner,
       repo: context.repo.repo,
       issue_number: prNumber,
