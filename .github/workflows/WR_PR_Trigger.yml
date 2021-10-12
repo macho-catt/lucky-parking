@@ -33,10 +33,10 @@ jobs:
         uses: actions/github-script@v5
         id: add-labels
         with:
-            script: |
-              const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/add-labels.js')
-              const getLabelsResult = "${{ steps.get-labels.outputs.result }}"
-              const result = script({ g: github, c: context }, getLabelsResult)
+          script: |
+            const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/add-labels.js')
+            const getLabelsResult = "${{ steps.get-labels.outputs.result }}"
+            const result = script({ g: github, c: context }, getLabelsResult)
           
   Last-Workflow-Failure:
     runs-on: ubuntu-latest
