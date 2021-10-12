@@ -21,7 +21,7 @@ jobs:
       - run: unzip add-linked-issue-labels-to-pr.zip
 
       - name: Get Labels From Linked Issue
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         # Variable that stores result of script
         id: get-labels
         with:
