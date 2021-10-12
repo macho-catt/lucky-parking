@@ -34,7 +34,7 @@ jobs:
         id: add-labels
         with:
             script: |
-            const getLabelsResult = ${{ steps.get-labels.outputs.result }}
+            const getLabelsResult = "${{ steps.get-labels.outputs.result }}"
             const script = require('./.github/js/wr-pr-trigger/add-linked-issue-labels-to-pr/add-labels.js')
             const result = script({ g: github, c: context }, getLabelsResult)
           
