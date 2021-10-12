@@ -18,8 +18,10 @@ async function downloadArtifact(github, context, workspace, zipName) {
     repo: context.repo.repo,
     run_id: context.payload.workflow_run.id,
   })
-  console.log('array: ', artifacts.data.artifacts)
-  const artifactData = artifacts.data.artifacts[0]
+  const artifacts = artifacts.data.artifacts
+  console.log('array: ', artifacts)
+  // const artifactData = artifacts.data.artifacts[0]
+  const artifactData = [...artifacts.map(data => data.name === zipName)]
   console.log('artifact data: ', artifactData)
 
   // Download artifact with GET API
@@ -31,7 +33,7 @@ async function downloadArtifact(github, context, workspace, zipName) {
     archive_format: 'zip',
   })
 
-  fs.writeFileSync(`${workspace}/${zipName}`, Buffer.from(download.data))
+  fs.writeFileSync(`${workspace}/${zipName}.zip`, Buffer.from(download.data))
 }
 
 /**

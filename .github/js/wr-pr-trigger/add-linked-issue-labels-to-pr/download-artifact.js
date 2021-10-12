@@ -14,7 +14,7 @@ const artifacts = require('../../utils/artifacts.js')
 function main({g, c}, workspace) {
   github = g
   context = c
-  const zipName = 'add-linked-issue-labels-to-pr.zip'
+  const zipName = 'add-linked-issue-labels-to-pr'
   artifacts.downloadArtifact(github, context, workspace, zipName)
 }
  
