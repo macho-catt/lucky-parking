@@ -12,7 +12,7 @@
    * @param {Object} c - context object 
    * @returns - returns the linked issue number
    */
-function main({g, c}, workspace) {
+async function main({g, c}, workspace) {
   github = g 
   context = c
   const fileName = `${workspace}/artifact.txt`
@@ -21,7 +21,7 @@ function main({g, c}, workspace) {
   const prNum = artifactJSON.prNumber
   console.log('issue: ', issueNum)
   console.log('pr: ', prNum)
-  const response = listLabelsOnIssue(github, context, issueNum)
+  const response = await listLabelsOnIssue(github, context, issueNum)
   console.log('response: ', response)
   const labels = response.map(data => data.name)
   console.log(`Labels found on issue: ${labels.join(', ')}`)
