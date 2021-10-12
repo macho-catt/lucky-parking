@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "Please expand above output for errors."
           exit 1
-      -name: Return Success
+      - name: Return Success
         run: |
           echo "${{ steps.final-result.outputs.result }}"
           echo "Success"
